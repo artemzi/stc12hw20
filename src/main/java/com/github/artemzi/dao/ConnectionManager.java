@@ -8,14 +8,19 @@ public class ConnectionManager extends Factory {
     private String url;
     private String username;
     private String password;
+    private String connectionUrl = null;
 
     public ConnectionManager(String url, String username, String password) {
         this.url = url;
         this.username = username;
         this.password = password;
+        this.connectionUrl = System.getenv("JDBC_DATABASE_URL");
     }
 
     public Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(url, username, password);
+        if (connectionUrl == null) {
+            return DriverManager.getConnection(url, username, password);
+        }
+        return DriverManager.getConnection(connectionUrl);
     }
 }

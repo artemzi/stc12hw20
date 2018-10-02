@@ -60,7 +60,7 @@
 
 <div class="container">
     <h2>Simple To Do List</h2>
-    <p><em>Click and drag to reorder, double click to cross an item off.</em></p>
+    <p><em>Double click to cross an item off.</em></p>
 
     <form name="toDoList">
         <input type="text" name="ListItem"/>

@@ -1,5 +1,7 @@
 package com.github.artemzi.controllers;
 
+import com.github.artemzi.pojo.Task;
+import com.github.artemzi.services.TaskService;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServlet;
@@ -15,6 +17,9 @@ public class HandlerServlet extends HttpServlet {
         String text = "success";
         String task = request.getParameter("task"); // get passed task
         // TODO do something, ex: write to database
+        TaskService service = new TaskService();
+        service.addTask(task);
+
         response.setContentType("text/plain");
         response.setCharacterEncoding("UTF-8");
         try {

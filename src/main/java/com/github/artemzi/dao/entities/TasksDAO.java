@@ -23,73 +23,72 @@ public class TasksDAO extends DAO<Task> {
         this.connectionManager = factory;
     }
 
-    @Override
-    public boolean add(Task item) {
-        Object[] values = {
-                item.getId(),
-                item.getName()
-        };
+//    @Override
+//    public boolean add(Task item) {
+//        Object[] values = {
+//                item.getName()
+//        };
+//
+//        try (Connection connection = connectionManager.getConnection();
+//             PreparedStatement statement = prepareStatement(connection, SQL_INSERT, false, values)) {
+//            int affectedRows = statement.executeUpdate();
+//            if (affectedRows == 0) {
+//                throw new DAOException("Creating task failed, no rows affected.");
+//            }
+//
+//            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+//                if (generatedKeys.next()) {
+//                    item.setId(generatedKeys.getInt(1));
+//                } else {
+//                    throw new DAOException("Creating task failed, no generated id key obtained.");
+//                }
+//            }
+//        } catch (SQLException e) {
+//            throw new DAOException(e);
+//        }
+//        return true;
+//    }
 
-        try (Connection connection = connectionManager.getConnection();
-             PreparedStatement statement = prepareStatement(connection, SQL_INSERT, false, values)) {
-            int affectedRows = statement.executeUpdate();
-            if (affectedRows == 0) {
-                throw new DAOException("Creating task failed, no rows affected.");
-            }
-
-            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
-                if (generatedKeys.next()) {
-                    item.setId(generatedKeys.getInt(1));
-                } else {
-                    throw new DAOException("Creating task failed, no generated id key obtained.");
-                }
-            }
-        } catch (SQLException e) {
-            throw new DAOException(e);
-        }
-        return true;
-    }
-
-    @Override
-    public Task getById(int id) {
-        return find(connectionManager, SQL_FIND_BY_ID, id);
-    }
-
-    @Override
-    public boolean update(Task item) {
-        Object[] values = {
-                item.getId(),
-                item.getName()
-        };
-
-        try (Connection connection = connectionManager.getConnection();
-             PreparedStatement statement = prepareStatement(connection, SQL_UPDATE, false, values)) {
-            int affectedRows = statement.executeUpdate();
-            if (affectedRows == 0) {
-                throw new DAOException("Updating student failed, no rows affected.");
-            }
-
-        } catch (SQLException e) {
-            throw new DAOException(e);
-        }
-        return true;
-    }
-
-    @Override
-    public boolean deleteById(int id) {
-        try (
-                Connection connection = connectionManager.getConnection();
-                PreparedStatement statement = prepareStatement(connection, SQL_DELETE, false, id);
-        ) {
-            int affectedRows = statement.executeUpdate();
-            if (affectedRows == 0) {
-                throw new DAOException("Deleting task failed, no rows affected.");
-            }
-        } catch (SQLException e) {
-            throw new DAOException(e);
-        }
-        return true;
-    }
+//    @Override
+//    public Task getById(int id) {
+//        return find(connectionManager, SQL_FIND_BY_ID, id);
+//    }
+//
+//    @Override
+//    public boolean update(Task item) {
+//        Object[] values = {
+//                item.getId(),
+//                item.getName()
+//        };
+//
+//        try (Connection connection = connectionManager.getConnection();
+//             PreparedStatement statement = prepareStatement(connection, SQL_UPDATE, false, values)) {
+//            int affectedRows = statement.executeUpdate();
+//            if (affectedRows == 0) {
+//                throw new DAOException("Updating student failed, no rows affected.");
+//            }
+//
+//        } catch (SQLException e) {
+//            throw new DAOException(e);
+//        }
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean deleteById(int id) {
+//        try (
+//                Connection connection = connectionManager.getConnection();
+//                PreparedStatement statement = prepareStatement(connection, SQL_DELETE, false, id);
+//        ) {
+//            int affectedRows = statement.executeUpdate();
+//            if (affectedRows == 0) {
+//                throw new DAOException("Deleting task failed, no rows affected.");
+//            }
+//        } catch (SQLException e) {
+//            throw new DAOException(e);
+//        }
+//        return true;
+//    }
 
     @Override
     protected Task map(ResultSet resultSet) throws SQLException {

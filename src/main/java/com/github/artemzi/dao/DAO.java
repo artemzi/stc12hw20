@@ -8,13 +8,6 @@ import java.sql.SQLException;
 import static com.github.artemzi.dao.Utils.prepareStatement;
 
 public abstract class DAO<T> {
-    public abstract boolean add(T item);
-
-    public abstract T getById(int id);
-
-    public abstract boolean update(T item);
-
-    public abstract boolean deleteById(int id);
 
     /**
      * Map the current row of the given ResultSet to an Object.

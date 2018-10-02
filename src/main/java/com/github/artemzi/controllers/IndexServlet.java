@@ -1,8 +1,7 @@
-package com.github.artemzi;
+package com.github.artemzi.controllers;
 
 import org.apache.log4j.Logger;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,12 +11,8 @@ import java.io.PrintWriter;
 public class IndexServlet extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(IndexServlet.class.getName());
 
-    public IndexServlet() {
-        LOGGER.debug("doGet was called");
-    }
-
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
         response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");
 

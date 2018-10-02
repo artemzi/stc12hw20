@@ -8,7 +8,7 @@
 
     <servlet>
         <servlet-name>IndexServlet</servlet-name>
-        <servlet-class>com.github.artemzi.IndexServlet</servlet-class>
+        <servlet-class>com.github.artemzi.controllers.IndexServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>

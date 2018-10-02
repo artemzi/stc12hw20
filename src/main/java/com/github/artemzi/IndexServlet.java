@@ -26,6 +26,8 @@ public class IndexServlet extends HttpServlet {
 
             writer.println("</body>");
             writer.println("</html>");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

@@ -1,22 +1,23 @@
 package com.github.artemzi.services;
 
-import com.github.artemzi.dao.DAO;
 import com.github.artemzi.dao.Factory;
 import com.github.artemzi.exceptions.DAOException;
-import com.github.artemzi.pojo.Task;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.github.artemzi.dao.Utils.prepareStatement;
 
-public class TaskService extends DAO<Task> {
+public class TaskService {
 
     private Factory connectionManager;
     private static final String SQL_INSERT = "INSERT INTO tasks VALUES (DEFAULT, ?)";
     private static final String SQL_DELETE = "DELETE FROM tasks WHERE name=?";
+    private static final String SQL_SELECT_ALL = "SELECT name FROM tasks";
 
     public TaskService() {
         this.connectionManager = Factory.getInstance("javabase.jdbc");
@@ -54,11 +55,17 @@ public class TaskService extends DAO<Task> {
         return true;
     }
 
-    @Override
-    protected Task map(ResultSet resultSet) throws SQLException {
-        return new Task(
-                resultSet.getInt("id"),
-                resultSet.getString("name")
-        );
+    public List<String> getAllTasks() {
+        List<String> tasks = new ArrayList<>();
+        try (Connection connection = connectionManager.getConnection();
+             PreparedStatement statement = prepareStatement(connection, SQL_SELECT_ALL, false);
+             ResultSet resultSet = statement.executeQuery()) {
+            while (resultSet.next()) {
+                tasks.add(resultSet.getString("name"));
+            }
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        }
+        return tasks;
     }
 }

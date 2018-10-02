@@ -1,3 +1,6 @@
+<%@ page import="java.util.List" %>
+<%@ page import="com.github.artemzi.services.TaskService" %>
+<%@ page import="com.github.artemzi.pojo.Task" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -65,7 +68,18 @@
 
     <div id="button">Add</div>
     <br/>
-    <ul></ul>
+
+    <ul>
+    <%
+        TaskService service = new TaskService();
+        List<String> tasks = service.getAllTasks();
+        for (String task : tasks) {
+    %>
+        <li><%=task%></li>
+    <%
+        }
+    %>
+    </ul>
 </div>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>

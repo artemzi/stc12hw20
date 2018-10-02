@@ -16,11 +16,27 @@ dependencies {
     compile 'javax.servlet:javax.servlet-api:3.1.0'
     compile group: 'log4j', name: 'log4j', version:'1.2.17'
     compile group: 'org.postgresql', name: 'postgresql', version: '42.2.5'
+    compile group: 'com.github.jsimone', name: 'webapp-runner', version: '9.0.11.0'
+
 
     testCompile('org.junit.jupiter:junit-jupiter-api:5.3.1')
     testCompile('org.junit.jupiter:junit-jupiter-params:5.3.1')
     testRuntime('org.junit.jupiter:junit-jupiter-engine:5.3.1')
 }
+
+task stage() {
+    dependsOn clean, war
+}
+war.mustRunAfter clean
+
+task copyToLib(type: Copy) {
+    into "$buildDir/server"
+    from(configurations.compile) {
+        include "webapp-runner*"
+    }
+}
+
+stage.dependsOn(copyToLib)
 
 test{
     useJUnitPlatform()

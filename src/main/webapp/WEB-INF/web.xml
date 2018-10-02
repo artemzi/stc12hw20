@@ -7,13 +7,13 @@
     <display-name>STC12 Home Work 20</display-name>
 
     <servlet>
-        <servlet-name>IndexServlet</servlet-name>
-        <servlet-class>com.github.artemzi.controllers.IndexServlet</servlet-class>
+        <servlet-name>HandlerServlet</servlet-name>
+        <servlet-class>com.github.artemzi.controllers.HandlerServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>IndexServlet</servlet-name>
-        <url-pattern>/index</url-pattern>
+        <servlet-name>HandlerServlet</servlet-name>
+        <url-pattern>/handler</url-pattern>
     </servlet-mapping>
 
 </web-app>

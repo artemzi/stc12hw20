@@ -16,6 +16,7 @@ public class TaskService extends DAO<Task> {
 
     private Factory connectionManager;
     private static final String SQL_INSERT = "INSERT INTO tasks VALUES (DEFAULT, ?)";
+    private static final String SQL_DELETE = "DELETE FROM tasks WHERE name=?";
 
     public TaskService() {
         this.connectionManager = Factory.getInstance("javabase.jdbc");
@@ -31,6 +32,21 @@ public class TaskService extends DAO<Task> {
             int affectedRows = statement.executeUpdate();
             if (affectedRows == 0) {
                 throw new DAOException("Creating task failed, no rows affected.");
+            }
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        }
+        return true;
+    }
+
+    public boolean deleteTask(String task) {
+        try (
+                Connection connection = connectionManager.getConnection();
+                PreparedStatement statement = prepareStatement(connection, SQL_DELETE, false, task);
+        ) {
+            int affectedRows = statement.executeUpdate();
+            if (affectedRows == 0) {
+                throw new DAOException("Deleting task failed, no rows affected.");
             }
         } catch (SQLException e) {
             throw new DAOException(e);

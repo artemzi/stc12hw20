@@ -98,9 +98,8 @@
             });
 
             $(document).on('dblclick','li', function(){
-                var self = $(this);
-                var text = self.val();
-                console.log(text);
+                var text = $(this).text();
+                var $li = $(this);
                 $.ajax({
                     url: 'handler',
                     type: 'POST',
@@ -110,7 +109,7 @@
                     success: function(data){
                         if (data === "success") {
                             console.debug('success'); //or whatever
-                            self.toggleClass('strike').fadeOut('slow');
+                            $li.toggleClass('strike').fadeOut('slow');
                         }
                     },
                     error: function(data) {

@@ -1,12 +1,9 @@
 .idea
 out
 
-# ignore big files
-data/lab01/testSet
-data/lab01/RESULT
+database.properties
 
 # env files
-hw15.properties
 *.out
 
 # gradle
@@ -23,9 +20,6 @@ gradle-app.setting
 
 # Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
 !gradle-wrapper.jar
-
-# Cache of project
-.gradletasknamecache
 
 ## File-based project format:
 *.iws
